@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 import psycopg2
 import os
 
@@ -21,6 +21,8 @@ def index():
     cursor.close()
     conn.close()
 
-    return '<h1>Hello from my First site with Docker</h1>' + f'{"<p>".join(map(str, records))}'
+    return render_template("index.html", records=records)
+    #return '<h1>Hello from my First site with Docker</h1>' + f'{"<p>".join(map(str, records))}'
+
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0', port=4000)
